@@ -46,6 +46,7 @@ describe('实现 Function.prototype.call()', () => {
 
   })
 
+  // 以下是 MDN 提供的例子
   it('使用 myCall 方法调用匿名函数', () => {
     const animals = [
       { species: 'Lion', name: 'King' },
