@@ -1,5 +1,5 @@
 const assert = require('chai').assert
-var myApply = require('../src/myApply.js')
+const myApply = require('../src/myApply.js')
 
 describe('实现 Function.prototype.apply()', () => {
   it('myApply 在 Function 的原型上', () => {
@@ -48,9 +48,9 @@ describe('实现 Function.prototype.apply()', () => {
 
   // 以下是 MDN 提供的例子
   it('用 apply 将数组各项添加到另一个数组', () => {
-    var array = ['a', 'b'];
-    var elements = [0, 1, 2];
-    array.push.apply(array, elements);
+    const array = ['a', 'b'];
+    const elements = [0, 1, 2];
+    array.push.myApply(array, elements);
     assert.equal(array.length, 5)
   })                 
 })

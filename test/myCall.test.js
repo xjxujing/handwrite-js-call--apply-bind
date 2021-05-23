@@ -1,5 +1,5 @@
 const assert = require('chai').assert
-var myCall = require('../src/myCall.js')
+const myCall = require('../src/myCall.js')
 
 describe('实现 Function.prototype.call()', () => {
   it('myCall 在 Function 的原型上', () => {
@@ -70,10 +70,10 @@ describe('实现 Function.prototype.call()', () => {
 
   it('使用 call 方法调用函数并且指定上下文的 this', () => {
     function greet() {
-      var reply = [this.animal, 'typically sleep between', this.sleepDuration].join(' ');
+      const reply = [this.animal, 'typically sleep between', this.sleepDuration].join(' ');
       assert.equal(reply, 'cats typically sleep between 12 and 16 hours')
     }
-    var obj = {
+    const obj = {
       animal: 'cats', sleepDuration: '12 and 16 hours'
     };
     greet.myCall(obj);  // 
@@ -95,8 +95,8 @@ describe('实现 Function.prototype.call()', () => {
       this.category = 'toy';
     }
 
-    var cheese = new Food('feta', 5);
-    var fun = new Toy('robot', 40);
+    const cheese = new Food('feta', 5);
+    const fun = new Toy('robot', 40);
 
     assert.equal(cheese.name, 'feta')
     assert.equal(cheese.category, 'food')
