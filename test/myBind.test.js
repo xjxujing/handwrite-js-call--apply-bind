@@ -37,7 +37,7 @@ describe('实现 Function.prototype.bind()', () => {
     }
 
     const list1 = list(1, 2, 3); // [1,2,3]
-    assert.equal(list1.length, 3)
+    assert.lengthOf(list1, 3)
 
     var result1 = addArguments(1, 2); // 3
     assert.equal(result1, 3)
@@ -68,23 +68,26 @@ describe('实现 Function.prototype.bind()', () => {
   })
 
 
-  // it('配合 setTimeout', () => {
-  //   function LateBloomer(petalCount) {
-  //     this.petalCount = petalCount;
-  //   }
+  it('配合 setTimeout', (done) => {
+    function LateBloomer(petalCount) {
+      this.petalCount = petalCount;
+    }
 
-  //   // 在 1 秒钟后声明 bloom
-  //   LateBloomer.prototype.bloom = function () {
-  //     return setTimeout(this.declare.bind(this), 1000);
-  //   };
+    // 在 1 秒钟后声明 bloom
+    LateBloomer.prototype.bloom = function () {
+      setTimeout(this.declare.bind(this), 1000);
+    };
 
-  //   LateBloomer.prototype.declare = function () {
-  //     return 'I am a beautiful flower with ' +
-  //       this.petalCount + ' petals!'
-  //   };
+    LateBloomer.prototype.declare = function () {
 
-  //   var flower = new LateBloomer();
-  //   var res = flower.bloom(7);  // 一秒钟后, 调用 'declare' 方法
-  //   assert.equal(res, 'I am a beautiful flower with 7 petals!')
-  // })
+      let str = 'I am a beautiful flower with ' +
+        this.petalCount + ' petals!'
+
+      assert.equal(str, 'I am a beautiful flower with 7 petals!')
+      done()
+    };
+
+    var flower = new LateBloomer(7);
+    flower.bloom();  // 一秒钟后, 调用 'declare' 方法
+  })
 })
