@@ -1,5 +1,3 @@
-const { Context } = require('mocha')
-
 Function.prototype.myCall = function (context, ...args) {
 
   if (['number', 'string', 'boolean'].includes(typeof context)) {
@@ -13,7 +11,7 @@ Function.prototype.myCall = function (context, ...args) {
   // 再强调一下，不是这里的 this, 这里的 this 就是那个要执行的函数
   const func = Symbol()
   ctx[func] = this
-  const result = ctx[func](...args)
+  const result = args.length ? ctx[func](...args) : ctx[func]()
 
   // 记得删除该属性
   delete ctx[func]
